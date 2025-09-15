@@ -1,0 +1,26 @@
+{
+  "name": "clover-rss",
+  "version": "1.0.0",
+  "description": "RSS feed generator for 4chan boards",
+  "homepage": "https://github.com/hachigodesu/clover-rss#readme",
+  "bugs": {
+    "url": "https://github.com/hachigodesu/clover-rss/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hachigodesu/clover-rss.git"
+  },
+  "license": "Unlicense",
+  "author": "hachigodesu",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.12.1",
+    "express": "^5.1.0",
+    "p-queue": "^8.1.1",
+    "rss": "^1.2.2"
+  }
+}
