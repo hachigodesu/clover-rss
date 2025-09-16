@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const RSS = require('rss');
+const he = require('he');
 const config = require('../config.json');
 const { boards } = require('../boards.json');
 
@@ -31,8 +32,8 @@ async function generateFeed(board, queue, cachedTime) {
             if(op.sticky && op.closed) return;
 
             boardFeed.item({
-                title: op.sub ?? `Untitled Post (${op.no})`,
-                description: op.com ?? `No comment provided`,
+                title: op.sub ? he.decode(op.sub) : `Untitled Post (${op.no})`,
+                description: op.com ? he.decode(op.com) : `No comment provided`,
                 url: `https://boards.4chan.org/${board}/thread/${op.no}`,
                 author: `${op.name ? op.name : ""}${op.trip ? ` ${op.trip}` : ""}${op.capcode ? ` ${op.capcode}` : ""}${op.id ? ` (ID:${op.id})` : ""}${op.country ? ` [${op.country} - ${op.country_name}]` : ""}${op.board_flag ? ` [${op.board_flag} - ${op.flag_name}]` : ""}`,
                 date: new Date(op.time * 1000).toUTCString(),
